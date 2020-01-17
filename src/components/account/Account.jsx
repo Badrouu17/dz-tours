@@ -92,7 +92,7 @@ class Account extends Component {
                       className="form__input"
                       id="name"
                       type="text"
-                      value={this.state.user && this.state.user.name}
+                      value={(this.state.user && this.state.user.name) || ""}
                       required="required"
                     />
                   </div>
@@ -105,7 +105,7 @@ class Account extends Component {
                       className="form__input"
                       id="email"
                       type="email"
-                      value={this.state.user && this.state.user.email}
+                      value={(this.state.user && this.state.user.email) || ""}
                       required="required"
                     />
                   </div>

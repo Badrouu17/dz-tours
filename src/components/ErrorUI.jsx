@@ -9,7 +9,6 @@ const ErrorUI = () => {
             <h2 className="heading-secondary heading-secondary--error">
               SOMETHING WRONG HAPPENED
             </h2>
-            <h2 className="error__emoji">😢</h2>
           </div>
           <div className="error__msg"></div>
         </div>
