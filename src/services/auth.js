@@ -6,7 +6,6 @@ async function callAuth(data, type) {
       `https://dztours-api.herokuapp.com/api/v1/users/${type}`,
       data
     );
-    console.log(response);
     return response;
   } catch (error) {
     return { error, isError: true };

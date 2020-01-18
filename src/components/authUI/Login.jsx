@@ -21,7 +21,8 @@ class Login extends Component {
       email: null,
       password: null
     },
-    error: null
+    error: null,
+    logging: false
   };
 
   changeHandler = e => {
@@ -38,6 +39,7 @@ class Login extends Component {
 
   submitHandler = async e => {
     e.preventDefault();
+    this.setState({ ...this.state, logging: true });
     const result = this.validation();
     if (result.error) {
       // validation error
@@ -48,10 +50,15 @@ class Login extends Component {
     const response = await auth.login(this.state.data);
     if (response.isError && response.error.response.status === 401) {
       //server error
-      this.setState({ ...this.state, error: "Incorrect email or password!" });
+      this.setState({
+        ...this.state,
+        error: "Incorrect email or password!",
+        logging: false
+      });
       return "error!";
     }
     auth.storeTheUser(response.data.token, response.data.data.user);
+    this.setState({ ...this.state, logging: false });
     window.location = "/overview";
     return "sended to the server!";
   };
@@ -110,7 +117,9 @@ class Login extends Component {
                 </div>
               ) : null}
               <div className="form__group">
-                <button className="btn btn--green">Login</button>
+                <button className="btn btn--green">
+                  {this.state.logging ? "logging..." : "login"}
+                </button>
               </div>
             </form>
           </div>

@@ -18,7 +18,6 @@ export const bookTour = async (tourId, stripe) => {
       sessionId: response.data.session.id
     });
   } catch (err) {
-    console.log(err);
     return err;
   }
 };

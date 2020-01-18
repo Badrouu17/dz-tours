@@ -9,7 +9,6 @@ async function getAllTours() {
     const response = await Axios.get(
       `https://dztours-api.herokuapp.com/api/v1/tours`
     );
-    console.log(response);
     return response;
   } catch (error) {
     return { error, isError: true };
@@ -21,7 +20,6 @@ async function getTour(id) {
     const response = await Axios.get(
       `https://dztours-api.herokuapp.com/api/v1/tours/${id}`
     );
-    console.log(response);
     return response;
   } catch (error) {
     return { error, isError: true };
@@ -33,7 +31,6 @@ async function getMyTours() {
     const response = await Axios.get(
       `https://dztours-api.herokuapp.com/api/v1/bookings/my-tours`
     );
-    console.log(response);
     return response;
   } catch (error) {
     return { error, isError: true };

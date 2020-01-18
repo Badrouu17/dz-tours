@@ -29,7 +29,8 @@ class Signup extends Component {
       password: null,
       passwordConfirm: null
     },
-    error: null
+    error: null,
+    signing: false
   };
 
   changeHandler = e => {
@@ -46,6 +47,7 @@ class Signup extends Component {
 
   submitHandler = async e => {
     e.preventDefault();
+    this.setState({ ...this.state, signing: true });
     const result = this.validation();
     if (result.error) {
       // validation error
@@ -56,10 +58,11 @@ class Signup extends Component {
     const response = await auth.signUp(this.state.data);
     if (response.isError) {
       //server error
-      this.setState({ ...this.state, error: "server error!" });
+      this.setState({ ...this.state, error: "server error!", signing: false });
       return "error!";
     }
     auth.storeTheUser(response.data.token, response.data.data.user);
+    this.setState({ ...this.state, signing: false });
     window.location = "/overview";
     return "sended to the server!";
   };
@@ -138,7 +141,9 @@ class Signup extends Component {
                 </div>
               ) : null}
               <div className="form__group">
-                <button className="btn btn--green">Signup</button>
+                <button className="btn btn--green">
+                  {this.state.signing ? "signing..." : "signup"}
+                </button>
               </div>
             </form>
           </div>

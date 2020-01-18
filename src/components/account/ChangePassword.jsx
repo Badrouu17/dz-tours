@@ -48,7 +48,6 @@ class ChangePassword extends Component {
     }
     // call the server
     const response = await updatePassword(this.state.data);
-    console.log(response);
     if (response.isError && response.error.response.status === 500) {
       //server error
       this.setState({
@@ -60,7 +59,10 @@ class ChangePassword extends Component {
 
     // change the token
     localStorage.setItem("token", response.data.token);
-    toast.success("changed successfully", { className: "toastify" });
+    toast.success("changed successfully", {
+      className: "toastify",
+      onClose: () => window.location.reload()
+    });
     this.setState({ ...this.state, saving: false });
     return "sended to the server!";
   };

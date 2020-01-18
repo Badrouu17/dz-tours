@@ -43,7 +43,11 @@ class Account extends Component {
     const response = await updateMe(form);
 
     localStorage.setItem("user", JSON.stringify(response.data.data.user));
-    toast.success("changed successfully", { className: "toastify" });
+    toast.success("changed successfully", {
+      className: "toastify",
+      onClose: () => window.location.reload()
+    });
+
     this.setState({ ...this.state, saving: false });
   };
 

@@ -6,7 +6,6 @@ export async function forgotPassword(data) {
       `https://dztours-api.herokuapp.com/api/v1/users/forgotPassword`,
       data
     );
-    console.log(response);
     return response;
   } catch (error) {
     return { error, isError: true };
@@ -19,7 +18,6 @@ export async function resetPassword(data, token) {
       `https://dztours-api.herokuapp.com/api/v1/users/resetPassword/${token}`,
       data
     );
-    console.log(response);
     return response;
   } catch (error) {
     return { error, isError: true };
