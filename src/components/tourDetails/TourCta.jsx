@@ -27,8 +27,8 @@ class TourCta extends Component {
 
   book = async id => {
     this.setState({ ...this.state, loading: true });
-    await bookTour(id, this.state.stripe);
-    //this.setState({ ...this.state, error: true });
+    // await bookTour(id, this.state.stripe);
+    this.setState({ ...this.state, error: true });
   };
 
   render() {
