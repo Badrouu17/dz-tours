@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import Icons from "./../../img/icons.svg";
 import Header from "./../Header";
 import ChangePassword from "./ChangePassword";
+import UploadPhoto from "./UploadPhoto";
 
 import { updateMe } from "./../../services/account";
 import { ToastContainer, toast } from "react-toastify";
 
 class Account extends Component {
   state = {
-    saving: null
+    saving: null,
   };
 
   componentDidMount() {
@@ -18,34 +19,27 @@ class Account extends Component {
     this.setState({ user });
   }
 
-  changeHandler = e => {
+  changeHandler = (e) => {
     const { id, value } = e.target;
-
-    if (id === "file") {
-      this.setState({ ...this.state, file: e.target.files[0] });
-      return "just file change";
-    }
-
     this.setState({
       ...this.state,
-      user: { ...this.state.user, [id]: value }
+      user: { ...this.state.user, [id]: value },
     });
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     this.setState({ ...this.state, saving: true });
     const form = new FormData();
     form.append("name", this.state.user.name);
     form.append("email", this.state.user.email);
-    this.state.file && form.append("photo", this.state.file);
 
     const response = await updateMe(form);
 
     localStorage.setItem("user", JSON.stringify(response.data.data.user));
     toast.success("changed successfully", {
       className: "toastify",
-      onClose: () => window.location.reload()
+      onClose: () => window.location.reload(),
     });
 
     this.setState({ ...this.state, saving: false });
@@ -83,7 +77,7 @@ class Account extends Component {
                   Your account settings
                 </h2>
                 <form
-                  onSubmit={e => this.handleSubmit(e)}
+                  onSubmit={(e) => this.handleSubmit(e)}
                   className="form form-user-data"
                   encType="multipart/form-data"
                 >
@@ -92,7 +86,7 @@ class Account extends Component {
                       Name
                     </label>
                     <input
-                      onChange={e => this.changeHandler(e)}
+                      onChange={(e) => this.changeHandler(e)}
                       className="form__input"
                       id="name"
                       type="text"
@@ -105,25 +99,12 @@ class Account extends Component {
                       Email address
                     </label>
                     <input
-                      onChange={e => this.changeHandler(e)}
+                      onChange={(e) => this.changeHandler(e)}
                       className="form__input"
                       id="email"
                       type="email"
                       value={(this.state.user && this.state.user.email) || ""}
                       required="required"
-                    />
-                  </div>
-                  <div className="form__group form__photo-upload">
-                    <img
-                      className="form__user-photo"
-                      src={`https://dztours-api.herokuapp.com/img/users/${this
-                        .state.user && this.state.user.photo}`}
-                      alt="User ph"
-                    />
-                    <input
-                      onChange={e => this.changeHandler(e)}
-                      id="file"
-                      type="file"
                     />
                   </div>
                   <div className="form__group right">
@@ -133,6 +114,8 @@ class Account extends Component {
                   </div>
                 </form>
               </div>
+              <div className="line">&nbsp;</div>
+              <UploadPhoto user={this.state.user}></UploadPhoto>
               <div className="line">&nbsp;</div>
               <ChangePassword></ChangePassword>
             </div>

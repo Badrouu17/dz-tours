@@ -1,31 +1,30 @@
 import React, { Component } from "react";
-import { bookTour } from "./../../services/bookTourWithStripe";
 import { Redirect } from "react-router-dom";
 
 class TourCta extends Component {
   state = {
     loading: false,
     stripe: null,
-    error: null
+    error: null,
   };
 
   componentDidMount() {
     if (window.Stripe) {
       this.setState({
         ...this.state,
-        stripe: window.Stripe("pk_test_Pv1zbmGlCQromCS7S2vtPQP600FwakwDgE")
+        stripe: window.Stripe("pk_test_Pv1zbmGlCQromCS7S2vtPQP600FwakwDgE"),
       });
     } else {
       document.querySelector("#stripe-js").addEventListener("load", () => {
         this.setState({
           ...this.state,
-          stripe: window.Stripe("pk_test_Pv1zbmGlCQromCS7S2vtPQP600FwakwDgE")
+          stripe: window.Stripe("pk_test_Pv1zbmGlCQromCS7S2vtPQP600FwakwDgE"),
         });
       });
     }
   }
 
-  book = async id => {
+  book = async (id) => {
     this.setState({ ...this.state, loading: true });
     // await bookTour(id, this.state.stripe);
     this.setState({ ...this.state, error: true });

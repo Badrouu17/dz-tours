@@ -22,7 +22,7 @@ const Footer = () => {
         </li>
       </ul>
       <p className="footer1__copyright">
-        &copy; Built by Badreddin laabed, Design by Jonas Schmedtmann.
+        &copy; Built with <span></span>💚 by Badreddin laabed Team.
       </p>
     </footer>
   );

@@ -17,7 +17,7 @@ import MyBookings from "./components/myBookings/MyBookings";
 import SmallDevices from "./components/smallDevices";
 class App extends Component {
   state = {
-    isLogged: false
+    isLogged: false,
   };
 
   async componentDidMount() {
@@ -56,13 +56,13 @@ class App extends Component {
             ></ProtectedRoute>
             <Route
               path="/login"
-              render={props => (
+              render={(props) => (
                 <Login {...props} isLogged={this.state.isLogged}></Login>
               )}
             ></Route>
             <Route
               path="/ForgotPassword"
-              render={props => (
+              render={(props) => (
                 <ForgotPassword
                   {...props}
                   isLogged={this.state.isLogged}
@@ -71,7 +71,7 @@ class App extends Component {
             ></Route>
             <Route
               path="/resetPassword/:token"
-              render={props => (
+              render={(props) => (
                 <ResetPassword
                   {...props}
                   isLogged={this.state.isLogged}
@@ -80,7 +80,7 @@ class App extends Component {
             ></Route>
             <Route
               path="/signup"
-              render={props => (
+              render={(props) => (
                 <Signup {...props} isLogged={this.state.isLogged}></Signup>
               )}
             ></Route>

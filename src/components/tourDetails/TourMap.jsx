@@ -5,7 +5,7 @@ import ReactMapboxGl, { Marker, Popup } from "react-mapbox-gl";
 const Map = ReactMapboxGl({
   accessToken:
     "pk.eyJ1IjoiYmFkcm91dTE3IiwiYSI6ImNrNHVsbTNsajBlYzAzbWw3NDI4NTVvMGUifQ.UnNK1uyQXmpdE6fndpdTzg",
-  scrollZoom: true
+  scrollZoom: true,
 });
 
 const TourMap = ({ data }) => {
@@ -15,6 +15,7 @@ const TourMap = ({ data }) => {
   return (
     <section className="section-map">
       <Map
+        // eslint-disable-next-line react/style-prop-object
         style="mapbox://styles/badrouu17/ck4ulxhaw58uk1coqtymnnacr"
         containerStyle={{ height: "100vh" }}
         zoom={[7]}
@@ -44,7 +45,7 @@ const TourMap = ({ data }) => {
                 offset={{
                   "bottom-left": [12, -38],
                   bottom: [0, -38],
-                  "bottom-right": [-12, -38]
+                  "bottom-right": [-12, -38],
                 }}
               >
                 <p>

@@ -1,8 +1,25 @@
 import Axios from "axios";
 
 Axios.defaults.headers.common = {
-  Authorization: `Bearer ${localStorage.getItem("token")}`
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
 };
+
+export async function upload(data) {
+  try {
+    const response = await Axios.post(
+      `http://127.0.0.1:3001/api/v1/users/upload`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    return { error, isError: true };
+  }
+}
 
 export async function getMe() {
   try {
@@ -20,7 +37,7 @@ export async function updateMe(data) {
     const response = await Axios({
       method: "PATCH",
       url: `https://dztours-api.herokuapp.com/api/v1/users/updateMe`,
-      data
+      data,
     });
     return response;
   } catch (error) {
@@ -33,7 +50,7 @@ export async function updatePassword(data) {
     const response = await Axios({
       method: "PATCH",
       url: `https://dztours-api.herokuapp.com/api/v1/users/updateMyPassword`,
-      data
+      data,
     });
     return response;
   } catch (error) {

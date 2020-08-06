@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class Header extends Component {
   state = {
-    user: null
+    user: null,
   };
 
   componentDidMount() {
@@ -42,8 +42,10 @@ class Header extends Component {
               </button>
               <Link to="/account" className="nav__el">
                 <img
-                  src={`https://dztours-api.herokuapp.com/img/users/${
-                    this.state.user ? this.state.user.photo : "default.jpg"
+                  src={`${
+                    this.state.user
+                      ? this.state.user.photo
+                      : "./../img/users/default.jpg"
                   }`}
                   alt="u"
                   className="nav__user-img"
