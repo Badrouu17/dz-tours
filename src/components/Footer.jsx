@@ -22,7 +22,7 @@ const Footer = () => {
         </li>
       </ul>
       <p className="footer1__copyright">
-        &copy; Built with <span></span>💚 by Badreddin laabed Team.
+        &copy; Built with <span></span>💚 by Badreddin labed.
       </p>
     </footer>
   );
